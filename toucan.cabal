@@ -15,7 +15,7 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Reader, Writer
+  exposed-modules:     Toucan.Reader, Toucan.Writer, Toucan.Setup
   ghc-options: -Wall -Werror
   -- other-modules:  Sql.Parser, Sql.Evaluator
   build-depends:       base >= 4.7 && < 5

@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Writer where
+module Toucan.Writer where
 
 import           Data.String.Conversions       (cs)
-import           System.FilePath.Posix
+import           System.FilePath.Posix         (dropExtension)
 import           Text.Blaze.Html.Renderer.Text (renderHtml)
 import           Text.Markdown                 (def, markdown, msXssProtect)
 

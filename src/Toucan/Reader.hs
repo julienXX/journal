@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Reader where
+module Toucan.Reader where
 
 import           System.Directory (listDirectory)
 
