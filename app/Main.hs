@@ -8,9 +8,9 @@ import           System.FilePath.Posix
 import           Text.Blaze.Html.Renderer.Text (renderHtml)
 import           Text.Markdown                 (def, markdown, msXssProtect)
 
-import           Toucan.Reader                 (readPosts)
-import           Toucan.Setup                  (buildSkeleton)
-import           Toucan.Writer                 (convertMdToHtml)
+import           Journal.Reader                (readPosts)
+import           Journal.Setup                 (buildSkeleton)
+import           Journal.Writer                (convertMdToHtml)
 
 main :: IO ()
 main = do

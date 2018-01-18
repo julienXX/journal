@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Toucan.Setup where
+module Journal.Setup where
 
 import           System.Directory (createDirectoryIfMissing)
 

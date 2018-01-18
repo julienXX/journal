@@ -1,8 +1,8 @@
-name:                toucan
+name:                journal
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/julienXX/toucan#readme
+homepage:            https://github.com/julienXX/journal#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Julien Blanchard
@@ -15,7 +15,7 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Toucan.Reader, Toucan.Writer, Toucan.Setup
+  exposed-modules:     Journal.Reader, Journal.Writer, Journal.Setup
   ghc-options: -Wall -Werror
   -- other-modules:  Sql.Parser, Sql.Evaluator
   build-depends:       base >= 4.7 && < 5
@@ -27,12 +27,12 @@ library
                      , blaze-html
   default-language:    Haskell2010
 
-executable toucan
+executable journal
   hs-source-dirs:      app
   main-is:             Main.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-                     , toucan
+                     , journal
                      , directory
                      , filepath
                      , text
@@ -40,12 +40,12 @@ executable toucan
                      , markdown
                      , blaze-html
 
-test-suite toucan-test
+test-suite journal-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-depends:       base
-                     , toucan
+                     , journal
                      , hspec
                      , hspec-discover
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
@@ -53,4 +53,4 @@ test-suite toucan-test
 
 source-repository head
   type:     git
-  location: https://github.com/julienXX/toucan
+  location: https://github.com/julienXX/journal

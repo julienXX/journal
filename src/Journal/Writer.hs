@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Toucan.Writer where
+module Journal.Writer where
 
 import           Data.String.Conversions       (cs)
 import           System.FilePath.Posix         (dropExtension)
