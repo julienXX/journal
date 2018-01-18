@@ -1,22 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Main where
+module Writer where
 
 import           Data.String.Conversions       (cs)
-import           Data.Text                     (Text (..))
-import           System.Directory              (listDirectory)
-import           System.Environment            (getArgs)
 import           System.FilePath.Posix
 import           Text.Blaze.Html.Renderer.Text (renderHtml)
 import           Text.Markdown                 (def, markdown, msXssProtect)
-
-
-main :: IO ()
-main = do
-  args <- getArgs
-  putStrLn "Read Markdown"
-  posts <- listDirectory "_posts"
-  mapM_ (\f -> convertMdToHtml f) posts
-  putStrLn "Finished."
 
 
 convertMdToHtml :: FilePath -> IO()

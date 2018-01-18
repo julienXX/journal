@@ -13,10 +13,11 @@ build-type:          Simple
 cabal-version:       >=1.10
 extra-source-files:  README.md
 
-executable toucan
+library
   hs-source-dirs:      src
-  main-is:             Main.hs
-  default-language:    Haskell2010
+  exposed-modules:     Reader, Writer
+  ghc-options: -Wall -Werror
+  -- other-modules:  Sql.Parser, Sql.Evaluator
   build-depends:       base >= 4.7 && < 5
                      , directory
                      , filepath
@@ -24,3 +25,32 @@ executable toucan
                      , string-conversions
                      , markdown
                      , blaze-html
+  default-language:    Haskell2010
+
+executable toucan
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , toucan
+                     , directory
+                     , filepath
+                     , text
+                     , string-conversions
+                     , markdown
+                     , blaze-html
+
+test-suite toucan-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , toucan
+                     , hspec
+                     , hspec-discover
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/julienXX/toucan
