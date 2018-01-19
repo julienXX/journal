@@ -5,7 +5,8 @@ import           Data.String.Conversions       (cs)
 import qualified Data.Text.Lazy                as LT
 import           System.FilePath.Posix         (dropExtension)
 import           Text.Blaze.Html.Renderer.Text (renderHtml)
-import           Text.EDE
+import           Text.EDE                      (eitherParseFile, eitherRender,
+                                                fromPairs, (.=))
 import           Text.Markdown                 (def, markdown, msXssProtect)
 
 convertMdToHtml :: FilePath -> IO()
