@@ -23,9 +23,9 @@ destPath f = "_site/" ++ dropExtension f ++ ".html"
 mkHtml :: Text -> Text -> IO(Text)
 mkHtml title body = do
     r <- eitherParseFile "_layout/default.ede"
-    either error return $ r >>= (`eitherRender` env)
+    either error return $ r >>= (`eitherRender` values)
   where
-    env = fromPairs
+    values = fromPairs
         [ "title" .= title
         , "body"  .= body
         ]
