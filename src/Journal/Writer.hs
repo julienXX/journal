@@ -2,7 +2,7 @@
 module Journal.Writer where
 
 import           Data.String.Conversions       (cs)
-import qualified Data.Text.Lazy                as LT
+import           Data.Text.Lazy                (Text)
 import           System.FilePath.Posix         (dropExtension)
 import           Text.Blaze.Html.Renderer.Text (renderHtml)
 import           Text.EDE                      (eitherParseFile, eitherRender,
@@ -20,7 +20,7 @@ convertMdToHtml file = do
 destPath :: FilePath -> FilePath
 destPath f = "_site/" ++ dropExtension f ++ ".html"
 
-mkHtml :: LT.Text -> LT.Text -> IO(LT.Text)
+mkHtml :: Text -> Text -> IO(Text)
 mkHtml title body = do
     r <- eitherParseFile "_layout/default.ede"
     either error return $ r >>= (`eitherRender` env)
