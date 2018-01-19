@@ -5,5 +5,5 @@ import           System.Directory (listDirectory)
 
 readPosts :: IO([FilePath])
 readPosts = do
-  putStrLn "Read Markdown"
+  putStrLn "Reading Markdown file from _posts..."
   listDirectory "_posts"

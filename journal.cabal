@@ -39,6 +39,7 @@ executable journal
                      , string-conversions
                      , markdown
                      , blaze-html
+                     , ede
 
 test-suite journal-test
   type:                exitcode-stdio-1.0
