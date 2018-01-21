@@ -8,5 +8,5 @@ buildSkeleton :: IO()
 buildSkeleton = do
   putStrLn "Building skeleton..."
   let dirs = ["_layout", "_posts", "_site/assets/css"]
-  mapM_ (\d -> createDirectoryIfMissing True d) dirs
+  mapM_ (createDirectoryIfMissing True) dirs
   copyFile "assets/style.css" "_site/assets/css/style.css"

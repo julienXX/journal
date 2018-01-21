@@ -20,7 +20,7 @@ convertMdToHtml file = do
 destPath :: FilePath -> FilePath
 destPath f = "_site/" ++ dropExtension f ++ ".html"
 
-mkHtml :: Text -> Text -> IO(Text)
+mkHtml :: Text -> Text -> IO Text
 mkHtml title body = do
     r <- eitherParseFile "_layout/default.ede"
     either error return $ r >>= (`eitherRender` values)

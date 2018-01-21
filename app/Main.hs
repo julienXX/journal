@@ -9,5 +9,5 @@ main :: IO ()
 main = do
   buildSkeleton
   posts <- readPosts
-  mapM_ (\f -> convertMdToHtml f) posts
+  mapM_ convertMdToHtml posts
   putStrLn "Finished."
