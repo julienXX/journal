@@ -21,6 +21,7 @@ library
                      , directory
                      , filepath
                      , text
+                     , parsec
                      , string-conversions
                      , markdown
                      , blaze-html
@@ -40,7 +41,7 @@ executable journal
                      , markdown
                      , blaze-html
                      , ede
-  ghc-options:       -dynamic -threaded
+  -- ghc-options:       -dynamic -threaded
 
 test-suite journal-test
   type:                exitcode-stdio-1.0
