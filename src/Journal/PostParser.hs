@@ -1,29 +1,31 @@
-module Journal.HeaderParser where
+module Journal.PostParser where
 
 import           Data.Functor.Identity as I
 import           Data.Text             (Text, pack)
 import           Text.Parsec
 
-data Meta = MkMeta { title :: Text, date :: Text, description :: Text }
+data Post = MkPost { title :: Text, date :: Text, description :: Text, body :: Text }
   deriving (Show)
 
-parseMeta :: Text -> Either Text Meta
-parseMeta post =
-  case parse metaFromPost "" post
+parsePost :: Text -> Either Text Post
+parsePost post =
+  case parse postParser "" post
   of
     Left err     -> Left . pack $ show err
     Right result -> Right result
 
-metaFromPost :: ParsecT Text u I.Identity Meta
-metaFromPost = do
+postParser :: ParsecT Text u I.Identity Post
+postParser = do
   _ <- startSeparator
   mTitle <- titleMeta
   mDate <- dateMeta
   mDesc <- descriptionMeta
   _ <- endSeparator
-  return MkMeta { title = pack mTitle,
+  mBody <- bodyContent
+  return MkPost { title = pack mTitle,
                   date = pack mDate,
-                  description = pack mDesc }
+                  description = pack mDesc,
+                  body = pack mBody}
 
 startSeparator :: ParsecT Text u Identity Char
 startSeparator = string "---" >> endOfLine
@@ -39,3 +41,6 @@ dateMeta = optionMaybe newline >> string "date: " >> spaces >> manyTill anyChar 
 
 descriptionMeta :: ParsecT Text u Identity String
 descriptionMeta = optionMaybe newline >> string "description: " >> spaces >> manyTill anyChar (try (string "\n"))
+
+bodyContent :: ParsecT Text u Identity String
+bodyContent = optionMaybe newline >> manyTill anyChar (try eof)

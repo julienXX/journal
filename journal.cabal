@@ -18,7 +18,7 @@ library
   exposed-modules:     Journal.Reader
                      , Journal.Writer
                      , Journal.Setup
-                     , Journal.HeaderParser
+                     , Journal.PostParser
   ghc-options:         -Wall -Werror
   build-depends:       base >= 4.7 && < 5
                      , directory

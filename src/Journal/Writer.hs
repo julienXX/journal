@@ -10,14 +10,15 @@ import           Text.EDE                      (eitherParseFile, eitherRender,
                                                 fromPairs, (.=))
 import           Text.Markdown                 (def, markdown, msXssProtect)
 
-import           Journal.HeaderParser
+import           Journal.PostParser
 
 convertMdToHtml :: FilePath -> IO()
 convertMdToHtml file = do
   source <- readFile $ "_posts/" ++ file
-  let meta = parseMeta $ cs source
-  let postTitle = getTitle meta
-  let renderedMarkdown = renderHtml $ markdown def { msXssProtect = True } $ cs source
+  let post = parsePost $ cs source
+  let postTitle = getTitle post
+  let postBody = getBody post
+  let renderedMarkdown = renderHtml $ markdown def { msXssProtect = True } $ cs postBody
   let dest = destPath file
   generatedHtml <- mkHtml postTitle renderedMarkdown
   writeFile dest (cs generatedHtml)
@@ -26,15 +27,19 @@ destPath :: FilePath -> FilePath
 destPath f = "_site/" ++ dropExtension f ++ ".html"
 
 mkHtml :: T.Text -> LT.Text -> IO LT.Text
-mkHtml pTitle body = do
+mkHtml pTitle pBody = do
     r <- eitherParseFile "_layout/default.ede"
     either error return $ r >>= (`eitherRender` values)
   where
     values = fromPairs
         [ "title" .= pTitle
-        , "body"  .= body
+        , "body"  .= pBody
         ]
 
-getTitle :: Either T.Text Meta -> T.Text
+getTitle :: Either T.Text Post -> T.Text
 getTitle (Left _)  = ""
-getTitle (Right m) = cs $ title m
+getTitle (Right p) = cs $ title p
+
+getBody :: Either T.Text Post -> T.Text
+getBody (Left _)  = ""
+getBody (Right p) = cs $ body p
