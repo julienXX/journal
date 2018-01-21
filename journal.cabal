@@ -15,7 +15,10 @@ extra-source-files:  README.md
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Journal.Reader, Journal.Writer, Journal.Setup
+  exposed-modules:     Journal.Reader
+                     , Journal.Writer
+                     , Journal.Setup
+                     , Journal.HeaderParser
   ghc-options:         -Wall -Werror
   build-depends:       base >= 4.7 && < 5
                      , directory
