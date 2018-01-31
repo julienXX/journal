@@ -5,15 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog</title>
+    <title>Julien Blanchard</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="assets/css/highlight.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Julien Blanchard" href="/feed.xml" />
   </head>
   <body>
-    {{#each documents}}
-      <a href="{{ file_name }}.html"><h2>{{ date }} - {{ title }}</h2></a>
-      <p>{{ tldr }}</p>
-    {{/each}}
+    <div class="content-container">
+      <header class="header">
+        <div class="header-title">
+          <a href="http://julienblanchard.com">Julien Blanchard</a>
+        </div>
+        <nav class="header-nav">
+          <a href="/about">About</a>
+          <a href="/archive">Archive</a>
+          <a href="/tags">Tags</a>
+          <a href="https://github.com/julienXX">Github</a>
+        </nav>
+      </header>
+
+      <div class="list">
+        {% for post in posts %}
+        <div class="list-post">
+          <a href="/2017/journaling-my-life-with-github/">
+            <div class="list-post-date">
+              <time>{{ post.value.date }}</time>
+            </div>
+            <div class="list-post-title">
+              {{ post.value.title }}
+            </div>
+            <div class="list-post-desc">
+              {{ post.value.description }}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="footer">
+        <hr />
+        <div class="footer-link">
+          <a href="https://twitter.com/julienXX"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://github.com/julienXX"><i class="fa fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/blanchardjulien"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          <a href="mailto:me@julienblanchard.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+        </div>
+        © 2017 Julien Blanchard. All rights reserved.
+      </div>
+    </div>
   </body>
 </html>
