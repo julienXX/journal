@@ -4,10 +4,9 @@ import           Data.Functor.Identity as I
 import           Data.Text             (Text, pack)
 import           Text.Parsec
 
-data Post = MkPost { title :: Text, date :: Text, description :: Text, body :: Text }
-  deriving (Show)
+import           Journal.Post
 
-parsePost :: Text -> Either Text Post
+parsePost :: Text -> ParsedPost
 parsePost post =
   case parse postParser "" post
   of
@@ -20,11 +19,13 @@ postParser = do
   mTitle <- titleMeta
   mDate <- dateMeta
   mDesc <- descriptionMeta
+  mTags <- tagsMeta
   _ <- endSeparator
   mBody <- bodyContent
   return MkPost { title = pack mTitle,
                   date = pack mDate,
                   description = pack mDesc,
+                  tags = pack mTags,
                   body = pack mBody}
 
 startSeparator :: ParsecT Text u Identity Char
@@ -41,6 +42,9 @@ dateMeta = optionMaybe newline >> string "date: " >> spaces >> manyTill anyChar 
 
 descriptionMeta :: ParsecT Text u Identity String
 descriptionMeta = optionMaybe newline >> string "description: " >> spaces >> manyTill anyChar (try (string "\n"))
+
+tagsMeta :: ParsecT Text u Identity String
+tagsMeta = optionMaybe newline >> string "tags: " >> spaces >> manyTill anyChar (try (string "\n"))
 
 bodyContent :: ParsecT Text u Identity String
 bodyContent = optionMaybe newline >> manyTill anyChar (try eof)
