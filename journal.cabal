@@ -16,7 +16,9 @@ extra-source-files:  README.md
 library
   hs-source-dirs:      src
   exposed-modules:     Journal.Reader
-                     , Journal.Writer
+                     , Journal.BaseWriter
+                     , Journal.PostWriter
+                     , Journal.IndexWriter
                      , Journal.Setup
                      , Journal.PostParser
                      , Journal.Post

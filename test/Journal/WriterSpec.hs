@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Journal.WriterSpec where
 
-import           Journal.Writer
+import           Journal.PostWriter
 import           Test.Hspec
 
 spec :: Spec
