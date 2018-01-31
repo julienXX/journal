@@ -7,7 +7,7 @@ import           Test.Hspec
 spec :: Spec
 spec = describe "Post" $ do
 
-  let parsedPost = Right MkPost { title = "title", date = "date", description = "description", tags = "tags", body = "body" }
+  let parsedPost = Right MkPost { title = "title", date = "date", description = "description", tags = "tag1, tag2", body = "body" }
 
   it "extracts title from a parsed post" $
     getTitle parsedPost `shouldBe` "title"
@@ -22,4 +22,4 @@ spec = describe "Post" $ do
     getBody parsedPost `shouldBe` "body"
 
   it "extracts tags from a parsed post" $
-    getTags parsedPost `shouldBe` "tags"
+    getTags parsedPost `shouldBe` ["tag1","tag2"]

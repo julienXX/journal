@@ -32,35 +32,13 @@
         </span>
         <div class="post-tag">
           <ul>
-
+            {% for tag in tags %}
             <li>
               <a href="http://julienblanchard.com/tags#thoughtleadering">
-                <span>thoughtleadering</span>
+                <span>{{ tag.value }}</span>
               </a>
             </li>
-
-
-            <li>
-              <a href="http://julienblanchard.com/tags#practice">
-                <span>practice</span>
-              </a>
-            </li>
-
-
-            <li>
-              <a href="http://julienblanchard.com/tags#self-quantification">
-                <span>self-quantification</span>
-              </a>
-            </li>
-
-
-            <li>
-              <a href="http://julienblanchard.com/tags#github">
-                <span>github</span>
-              </a>
-            </li>
-
-
+            {% endfor %}
           </ul>
         </div>
 

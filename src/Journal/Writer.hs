@@ -20,21 +20,23 @@ convertMdToHtml file = do
   let postTitle = getTitle post
   let postBody = getBody post
   let postDate = getDate post
+  let postTags = getTags post
   let renderedMarkdown = renderHtml $ markdown def { msXssProtect = True } $ cs postBody
   let dest = destPath file
-  generatedHtml <- mkHtml postTitle postDate renderedMarkdown
+  generatedHtml <- mkHtml postTitle postDate postTags renderedMarkdown
   writeFile dest (cs generatedHtml)
 
 destPath :: FilePath -> FilePath
 destPath f = "_site/" ++ dropExtension f ++ ".html"
 
-mkHtml :: T.Text -> T.Text -> LT.Text -> IO LT.Text
-mkHtml pTitle pDate pBody = do
+mkHtml :: T.Text -> T.Text -> [T.Text] -> LT.Text -> IO LT.Text
+mkHtml pTitle pDate pTags pBody = do
     r <- eitherParseFile "_layout/default.ede"
     either error return $ r >>= (`eitherRender` values)
   where
     values = fromPairs
         [ "title" .= pTitle
         , "date"  .= pDate
+        , "tags"  .= pTags
         , "body"  .= pBody
         ]
