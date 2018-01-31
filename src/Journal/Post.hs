@@ -27,5 +27,5 @@ getBody (Right p) = cs $ body p
 getTags :: ParsedPost -> [Text]
 getTags (Left _)  = [pack ""]
 getTags (Right p) = do
-  let comma = pack ", "
+  let comma = pack ","
   splitOn comma (tags p)
