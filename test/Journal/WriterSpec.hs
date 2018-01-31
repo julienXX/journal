@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Journal.WriterSpec where
 
-import           Data.Monoid    ((<>))
 import           Journal.Writer
 import           Test.Hspec
 

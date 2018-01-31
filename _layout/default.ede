@@ -10,10 +10,74 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Julien Blanchard" href="/feed.xml" />
   </head>
 
   <body>
-    {{ body }}
+    <div class="content-container">
+      <header>
+        <div class="header-small">
+          <a href="http://julienblanchard.com">Julien Blanchard</a>
+        </div>
+      </header>
+      <div class="post">
+        <div class="post-title">{{ title }}</div>
+        <span class="post-date">
+          <time>{{ date }}</time>
+        </span>
+        <div class="post-tag">
+          <ul>
+
+            <li>
+              <a href="http://julienblanchard.com/tags#thoughtleadering">
+                <span>thoughtleadering</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="http://julienblanchard.com/tags#practice">
+                <span>practice</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="http://julienblanchard.com/tags#self-quantification">
+                <span>self-quantification</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="http://julienblanchard.com/tags#github">
+                <span>github</span>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+
+        {{ body }}
+
+        <div class="footer">
+          <hr />
+          <div class="footer-link">
+            <a href="https://twitter.com/julienXX"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://github.com/julienXX"><i class="fa fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/blanchardjulien"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href="mailto:me@julienblanchard.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+          </div>
+          © 2017 Julien Blanchard. All rights reserved.
+        </div>
+
+      </div>
   </body>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
