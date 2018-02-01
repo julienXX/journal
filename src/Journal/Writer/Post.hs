@@ -1,6 +1,5 @@
-{-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Journal.PostWriter where
+module Journal.Writer.Post where
 
 import           Data.String.Conversions       (cs)
 import           Data.Text.Lazy                as LT hiding (pack, unpack)
@@ -10,9 +9,9 @@ import           Text.EDE                      (eitherParseFile, eitherRender,
                                                 fromPairs, (.=))
 import           Text.Markdown                 (def, markdown, msXssProtect)
 
-import           Journal.BaseWriter            (Body, Date, Tags, Title,
-                                                postFromFile)
 import           Journal.Post
+import           Journal.Writer.Base           (Body, Date, Tags, Title,
+                                                postFromFile)
 
 convertMdToHtml :: FilePath -> IO()
 convertMdToHtml file = do

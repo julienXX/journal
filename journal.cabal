@@ -16,9 +16,9 @@ extra-source-files:  README.md
 library
   hs-source-dirs:      src
   exposed-modules:     Journal.Reader
-                     , Journal.BaseWriter
-                     , Journal.PostWriter
-                     , Journal.IndexWriter
+                     , Journal.Writer.Base
+                     , Journal.Writer.Post
+                     , Journal.Writer.Index
                      , Journal.Setup
                      , Journal.PostParser
                      , Journal.Post
@@ -47,7 +47,7 @@ test-suite journal-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
-  other-modules:       Journal.WriterSpec, Journal.PostSpec, Journal.PostParserSpec
+  other-modules:       Journal.Writer.PostSpec, Journal.PostSpec, Journal.PostParserSpec
   build-depends:       base
                      , journal
                      , hspec

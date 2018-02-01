@@ -1,11 +1,10 @@
-{-# LANGUAGE DeriveAnyClass    #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Journal.IndexWriter where
+module Journal.Writer.Index (buildIndex) where
 
 import           Data.Aeson              (ToJSON, object, toJSON)
 import           Data.String.Conversions (cs)
-import           Data.Text.Lazy          as LT hiding (pack, unpack)
-import           Journal.BaseWriter      (Date, Description, Title,
+import           Data.Text.Lazy          as LT hiding (map, pack, unpack)
+import           Journal.Writer.Base     (Date, Description, Title,
                                           postFromFile)
 import           Text.EDE                (eitherParseFile, eitherRender,
                                           fromPairs, (.=))
@@ -24,16 +23,16 @@ instance ToJSON IndexEntry where
 buildIndex :: [FilePath] -> IO ()
 buildIndex paths = do
   parsedPosts <- mapM postFromFile paths
-  entries <- mapM makeIndexEntry parsedPosts
+  let entries = map makeIndexEntry parsedPosts
   generatedIndex <- mkIndex entries
   writeFile indexPath (cs generatedIndex)
 
-makeIndexEntry :: ParsedPost -> IO IndexEntry
+makeIndexEntry :: ParsedPost -> IndexEntry
 makeIndexEntry post = do
   let postTitle = getTitle post
   let postDate = getDate post
   let postDescription = getDescription post
-  pure MkIndexEntry { eTitle = postTitle, eDate = postDate, eDescription = postDescription }
+  MkIndexEntry { eTitle = postTitle, eDate = postDate, eDescription = postDescription }
 
 indexPath :: FilePath
 indexPath = "_site/index.html"

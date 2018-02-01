@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Journal.BaseWriter where
+module Journal.Writer.Base where
 
 import           Data.String.Conversions (cs)
 import           Data.Text               as T

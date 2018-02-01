@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import           Journal.IndexWriter (buildIndex)
-import           Journal.PostWriter  (convertMdToHtml)
-import           Journal.Reader      (readPosts)
-import           Journal.Setup       (buildSkeleton)
+import           Journal.Reader       (readPosts)
+import           Journal.Setup        (buildSkeleton)
+import           Journal.Writer.Index (buildIndex)
+import           Journal.Writer.Post  (convertMdToHtml)
 
 main :: IO ()
 main = do
