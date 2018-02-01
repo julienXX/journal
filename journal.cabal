@@ -47,7 +47,7 @@ test-suite journal-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
-  other-modules:       Journal.Writer.PostSpec, Journal.PostSpec, Journal.PostParserSpec
+  other-modules:       Journal.Writer.PostSpec, Journal.Writer.IndexSpec, Journal.PostSpec, Journal.PostParserSpec
   build-depends:       base
                      , journal
                      , hspec

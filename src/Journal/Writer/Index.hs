@@ -1,5 +1,6 @@
-{-# LANGUAGE OverloadedStrings #-}
-module Journal.Writer.Index (buildIndex) where
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE OverloadedStrings     #-}
+module Journal.Writer.Index where
 
 import           Data.Aeson              (ToJSON, object, toJSON)
 import           Data.String.Conversions (cs)
@@ -9,16 +10,17 @@ import           Journal.Writer.Base     (Date, Description, Title,
 import           Text.EDE                (eitherParseFile, eitherRender,
                                           fromPairs, (.=))
 
-import           Journal.Post
+import           Journal.Post            (ParsedPost, getDate, getDescription,
+                                          getTitle)
 
-data IndexEntry = MkIndexEntry { eTitle :: Title, eDate :: Date, eDescription :: Description }
-  deriving (Show)
+data IndexEntry = MkIndexEntry { title :: Title, date :: Date, description :: Description }
+  deriving (Show, Eq)
 
 instance ToJSON IndexEntry where
   toJSON i = object [
-    "title"       .= eTitle i,
-    "date"        .= eDate i,
-    "description" .= eDescription i ]
+    "title"       .= title i,
+    "date"        .= date i,
+    "description" .= description i ]
 
 buildIndex :: [FilePath] -> IO ()
 buildIndex paths = do
@@ -32,7 +34,7 @@ makeIndexEntry post = do
   let postTitle = getTitle post
   let postDate = getDate post
   let postDescription = getDescription post
-  MkIndexEntry { eTitle = postTitle, eDate = postDate, eDescription = postDescription }
+  MkIndexEntry { title = postTitle, date = postDate, description = postDescription }
 
 indexPath :: FilePath
 indexPath = "_site/index.html"
